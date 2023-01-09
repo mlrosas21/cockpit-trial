@@ -1,0 +1,9 @@
+<mvc:View controllerName="sandbox.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content> 
+            <mvc:XMLView viewName="sandbox.view.HelloPanel"/>
+        </content>
+    </Page>
+</mvc:View>
