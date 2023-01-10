@@ -3,7 +3,6 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 	displayBlock="true"
-	height="100%"
 	busyIndicatorDelay="0"
 >
 	<Panel
@@ -20,14 +19,14 @@
 			<Button
 				text="{i18n>showHelloButtonText}"
 				press=".onShowHello"
-				class="myCustomButton"/>
+				class="sapUiSmallMarginEnd"/>
 			<Input
 				value="{/recipient/name}"
 				valueLiveUpdate="true"
-				width="60%"/>
+				width="40%"/>
 			<FormattedText
 				htmlText="Hello {/recipient/name}"
-				class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
+				class="sapUiSmallMargin"/>
 		</content>
 	</Panel>
 </mvc:View>

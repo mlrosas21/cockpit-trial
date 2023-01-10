@@ -4,6 +4,7 @@
     <Page id="page" title="{i18n>title}">
         <content> 
             <mvc:XMLView viewName="sandbox.view.HelloPanel"/>
+            <mvc:XMLView viewName="sandbox.view.InvoiceList"/>
         </content>
     </Page>
 </mvc:View>
