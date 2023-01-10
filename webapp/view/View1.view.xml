@@ -3,8 +3,10 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content> 
-            <mvc:XMLView viewName="sandbox.view.HelloPanel"/>
-            <mvc:XMLView viewName="sandbox.view.InvoiceList"/>
+            <!-- <mvc:XMLView viewName="sandbox.view.HelloPanel"/>
+            <mvc:XMLView viewName="sandbox.view.InvoiceList"/> -->
+            <!-- <mvc:XMLView viewName="sandbox.view.Calendar"/> -->
+            <mvc:XMLView viewName="sandbox.view.CalendarGridTable"/>
         </content>
     </Page>
 </mvc:View>

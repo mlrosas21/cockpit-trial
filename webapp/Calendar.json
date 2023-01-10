@@ -1,0 +1,64 @@
+{
+	"months": [
+		{
+			"label": "Enero",
+			"number": 0,
+			"days": 31
+		},
+		{
+			"label": "Febrero",
+			"number": 1,
+			"days": 28
+		},
+		{
+			"label": "Marzo",
+			"number": 2,
+			"days": 31
+		},
+		{
+			"label": "Abril",
+			"number": 3,
+			"days": 30
+		},
+		{
+			"label": "Mayo",
+			"number": 4,
+			"days": 31
+		},
+		{
+			"label": "Junio",
+			"number": 5,
+			"days": 30
+		},
+		{
+			"label": "Julio",
+			"number": 6,
+			"days": 31
+		},
+		{
+			"label": "Agosto",
+			"number": 7,
+			"days": 31
+		},
+		{
+			"label": "Septiembre",
+			"number": 8,
+			"days": 30
+		},
+		{
+			"label": "Octubre",
+			"number": 9,
+			"days": 31
+		},
+		{
+			"label": "Noviembre",
+			"number": 10,
+			"days": 30
+		},
+		{
+			"label": "Diciembre",
+			"number": 11,
+			"days": 31
+		}
+	]
+}

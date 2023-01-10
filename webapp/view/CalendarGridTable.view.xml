@@ -1,0 +1,25 @@
+<mvc:View
+	controllerName="sandbox.controller.CalendarGridTable"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+    height="100%">
+	<m:Page
+		showHeader="false"
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<Table
+                id="idCalendarTable"
+				rows="{daysInfo}"
+				visibleRowCount="12"
+				ariaLabelledBy="title"
+                selectionMode="None"
+                width="auto">
+                <columns>
+
+                </columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

@@ -77,6 +77,10 @@
       "invoice": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "Invoices.json"
+      },
+      "months": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "Calendar.json"
       }
     },
     "resources": {
