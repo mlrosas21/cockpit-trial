@@ -11,14 +11,14 @@
 		<m:content>
 			<Table
                 id="idCalendarTable"
-				rows="{daysInfo}"
 				visibleRowCount="12"
 				ariaLabelledBy="title"
                 selectionMode="None"
+                columns="{
+                    path: 'data>/columns',
+                    factory: '.columnFactory'                    
+                    }"
                 width="auto">
-                <columns>
-
-                </columns>
 			</Table>
 		</m:content>
 	</m:Page>

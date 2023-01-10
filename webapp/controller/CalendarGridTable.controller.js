@@ -11,34 +11,39 @@ sap.ui.define([
         onInit: function(){      
             let oDaysModel= new JSONModel()
             this.getView().setModel(oDaysModel, "daysInfo");
-            this._addTableColumns()      
+            //this._addTableColumns()      
 
         },
-        _addTableColumns: function(){
+        _getTableColumns: function(){
             let oTable = this.getView().byId("idCalendarTable");
-
-            for(let i=1; i<=31; i++){
-                let oColumn = new sap.ui.table.Column("col"+i, {
-                    width: "2.5em",
-                    hAlign: "Center",
-                    resizable: false,
-                    label: `${i}`,
-                    template: new sap.m.Text({text: "{i}"})
-                })
-                oTable.addColumn(oColumn)
-            }
+                // let oColumn = new sap.ui.table.Column("col"+i, {
+                //     width: "2.5em",
+                //     hAlign: "Center",
+                //     resizable: false,
+                //     label: `${i}`,
+                //     template: new sap.m.Text({text: "{i}"})
+                // })
+                // oTable.addColumn(oColumn)
         }, 
         /**
          * @override
          */
         onAfterRendering: function() {
+
+            let oTable = this.getView().byId("idCalendarTable")
             let aMonths = this.getView().getModel("months").getData().months;
-            let oTable = this.getView().byId("idCalendarTable");
+            let aColumns = []
 
             let aMonthsInfo = []
             for(let i = 0; i< aMonths.length; i++){
                 let obj = {}
                 for(let j=1; j<=31; j++){
+                    if(i===0){
+                        let obj={
+                            columnName: j
+                        }
+                        aColumns.push(obj)
+                    }
                     let year = new Date().getFullYear()
                     let date = new Date(year, i, j)
                     let type = '';
@@ -53,10 +58,21 @@ sap.ui.define([
             var oModel = new sap.ui.model.json.JSONModel();
             oModel.setData({
                 rows: aMonthsInfo,
+                columns: aColumns
             });
 
-            oTable.bindRows(oModel)
-            this.getView().getModel("daysInfo").setData(oNewModel)
+            oTable.setModel(oModel, "data")
+            oTable.bindRows("data>/rows");
+        },
+        columnFactory : function(sId, oContext) {
+            var tab = this.getView().byId("table");
+                    
+            var colInd = sId.slice(-1);
+                var sColumnId = oContext.getModel().oData.columns[colInd].columnName;
+                return new sap.ui.table.Column({           
+                    label: `${sColumnId}`, 
+                    template: `${sColumnId}`
+                });
         }
 	});
 });
