@@ -8,28 +8,13 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("sandbox.controller.CalendarGridTable", {
-        onInit: function(){      
-            let oDaysModel= new JSONModel()
-            this.getView().setModel(oDaysModel, "daysInfo");
-            //this._addTableColumns()      
+        onInit: function(){
 
         },
-        _getTableColumns: function(){
-            let oTable = this.getView().byId("idCalendarTable");
-                // let oColumn = new sap.ui.table.Column("col"+i, {
-                //     width: "2.5em",
-                //     hAlign: "Center",
-                //     resizable: false,
-                //     label: `${i}`,
-                //     template: new sap.m.Text({text: "{i}"})
-                // })
-                // oTable.addColumn(oColumn)
-        }, 
-        /**
-         * @override
-         */
         onAfterRendering: function() {
-
+            this._addTableInfo()
+        },
+        _addTableInfo: function(){
             let oTable = this.getView().byId("idCalendarTable")
             let aMonths = this.getView().getModel("months").getData().months;
             let aColumns = [
@@ -48,19 +33,24 @@ sap.ui.define([
                     }
                     let date = new Date(new Date().getFullYear(), i, j)
                     let day = date.getDay()
-                    let type;
+                    let type, state;
                     switch(day){
                         case 0:
                             type="D"
+                            state="Information"
                             break;
                         case 6:
                             type="S"
+                            state="Information"
                             break;
                         default:
-                            type=""
-                            break;
+                            type = '';
+                            state='None'
                     }
-                    row[j] = type
+                    row[j] = {
+                        value: type,
+                        state: state
+                    }
                 }
                 aMonthsInfo.push(row)
             }
@@ -75,14 +65,14 @@ sap.ui.define([
             oTable.bindRows("/rows");
         },
         columnFactory : function(sId, oContext) {     
-            var sColumnId = oContext.getObject().columnName;
-            if(sColumnId === "Mes"){
+            var sColumnName = oContext.getObject().columnName;
+            if(sColumnName === "Mes"){
                 return new sap.ui.table.Column({      
                     width: "7em",
                     resizable: false,     
-                    label: sColumnId, 
+                    label: sColumnName, 
                     template: new sap.m.Text({
-                        text: "{"+sColumnId+"}"
+                        text: "{"+sColumnName+"}"
                     }) 
                 });
             }
@@ -90,9 +80,10 @@ sap.ui.define([
                 width: "2.5em",
                 hAlign: "Center",
                 resizable: false,     
-                label: sColumnId, 
-                template: new sap.m.Text({
-                    text: "{"+sColumnId+"}"
+                label: sColumnName, 
+                template: new sap.m.ObjectStatus({
+                    text: `{${sColumnName}/value}`,
+                    state: `{${sColumnName}/state}`
                 }) 
             });
         }
