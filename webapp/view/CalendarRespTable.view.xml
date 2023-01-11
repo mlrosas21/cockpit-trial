@@ -1,0 +1,19 @@
+<mvc:View
+	controllerName="sandbox.controller.CalendarRespTable"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+    height="100%">
+	<Page
+		showHeader="false"
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<content>
+			<Table
+                id="idCalendarRespTable"
+				ariaLabelledBy="title"
+                popinLayout="GridSmall"
+				>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
