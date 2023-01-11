@@ -32,27 +32,37 @@ sap.ui.define([
 
             let oTable = this.getView().byId("idCalendarTable")
             let aMonths = this.getView().getModel("months").getData().months;
-            let aColumns = []
-
+            let aColumns = [
+                {columnName: "Mes"}
+            ]
             let aMonthsInfo = []
             for(let i = 0; i< aMonths.length; i++){
-                let obj = {}
+                let row = {}
+                row['Mes'] = aMonths[i].label
                 for(let j=1; j<=31; j++){
                     if(i===0){
-                        let obj={
-                            columnName: j
+                        let col={
+                            columnName: `${j}`
                         }
-                        aColumns.push(obj)
+                        aColumns.push(col)
                     }
-                    let year = new Date().getFullYear()
-                    let date = new Date(year, i, j)
-                    let type = '';
-                    if(date.getDay() === 0 || date.getDay() === 6){
-                        type="FS"
+                    let date = new Date(new Date().getFullYear(), i, j)
+                    let day = date.getDay()
+                    let type;
+                    switch(day){
+                        case 0:
+                            type="D"
+                            break;
+                        case 6:
+                            type="S"
+                            break;
+                        default:
+                            type=""
+                            break;
                     }
-                    obj[j] = type
+                    row[j] = type
                 }
-                aMonthsInfo.push(obj)
+                aMonthsInfo.push(row)
             }
 
             var oModel = new sap.ui.model.json.JSONModel();
@@ -61,18 +71,30 @@ sap.ui.define([
                 columns: aColumns
             });
 
-            oTable.setModel(oModel, "data")
-            oTable.bindRows("data>/rows");
+            oTable.setModel(oModel)
+            oTable.bindRows("/rows");
         },
-        columnFactory : function(sId, oContext) {
-            var tab = this.getView().byId("table");
-                    
-            var colInd = sId.slice(-1);
-                var sColumnId = oContext.getModel().oData.columns[colInd].columnName;
-                return new sap.ui.table.Column({           
-                    label: `${sColumnId}`, 
-                    template: `${sColumnId}`
+        columnFactory : function(sId, oContext) {     
+            var sColumnId = oContext.getObject().columnName;
+            if(sColumnId === "Mes"){
+                return new sap.ui.table.Column({      
+                    width: "7em",
+                    resizable: false,     
+                    label: sColumnId, 
+                    template: new sap.m.Text({
+                        text: "{"+sColumnId+"}"
+                    }) 
                 });
+            }
+            return new sap.ui.table.Column({      
+                width: "2.5em",
+                hAlign: "Center",
+                resizable: false,     
+                label: sColumnId, 
+                template: new sap.m.Text({
+                    text: "{"+sColumnId+"}"
+                }) 
+            });
         }
 	});
 });

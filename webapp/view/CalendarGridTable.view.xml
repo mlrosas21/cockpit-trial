@@ -15,10 +15,11 @@
 				ariaLabelledBy="title"
                 selectionMode="None"
                 columns="{
-                    path: 'data>/columns',
+                    path: '/columns',
                     factory: '.columnFactory'                    
                     }"
-                width="auto">
+				fixedColumnCount="1"
+				>
 			</Table>
 		</m:content>
 	</m:Page>
