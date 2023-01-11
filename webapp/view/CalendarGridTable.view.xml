@@ -2,6 +2,7 @@
 	controllerName="sandbox.controller.CalendarGridTable"
 	xmlns="sap.ui.table"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
 	xmlns:m="sap.m"
     height="100%">
 	<m:Page
@@ -9,6 +10,7 @@
 		enableScrolling="false"
 		class="sapUiContentPadding">
 		<m:content>
+
 			<Table
                 id="idCalendarTable"
 				visibleRowCount="12"
@@ -20,6 +22,22 @@
                     }"
 				fixedColumnCount="1"
 				>
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="Calendario de Licencias - {yearsModel>/selectedYear}"/>
+						<m:ToolbarSpacer/>
+						<m:Label text="Año:"/>
+						<m:Select
+							id="idSelectYear"
+							forceSelection="false"
+							selectedKey="{yearsModel>/selectedYear}"
+							items="{yearsModel>/years}"
+							change="onYearChange">
+							<c:Item key="{yearsModel>sYear}" text="{yearsModel>sYear}" />
+						</m:Select>
+					</m:OverflowToolbar>
+				</extension>
+
 			</Table>
 		</m:content>
 	</m:Page>

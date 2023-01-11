@@ -6,8 +6,8 @@
             <!-- <mvc:XMLView viewName="sandbox.view.HelloPanel"/>
             <mvc:XMLView viewName="sandbox.view.InvoiceList"/> -->
             <!-- <mvc:XMLView viewName="sandbox.view.Calendar"/> -->
-            <!-- <mvc:XMLView viewName="sandbox.view.CalendarGridTable"/> -->
-            <mvc:XMLView viewName="sandbox.view.CalendarRespTable"/> 
+            <mvc:XMLView viewName="sandbox.view.CalendarGridTable"/>
+            <!-- <mvc:XMLView viewName="sandbox.view.CalendarRespTable"/>  -->
         </content>
     </Page>
 </mvc:View>

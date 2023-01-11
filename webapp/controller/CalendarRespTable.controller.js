@@ -32,7 +32,6 @@ sap.ui.define([
                     header: new sap.m.Label({
                         text: `${i}` 
                     }),
-                    width : "2.5em",
                     demandPopin: true,
                     minScreenWidth: "Desktop"
                 })

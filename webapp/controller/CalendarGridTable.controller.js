@@ -9,12 +9,32 @@ sap.ui.define([
 
 	return Controller.extend("sandbox.controller.CalendarGridTable", {
         onInit: function(){
+            this._getSelectYears()
+            
+        },
+        _getSelectYears: function(){
+            let aYears = []
+            let sYear = new Date().getFullYear()
 
+            // Últimos 5 años
+            for(let i=5; i>0; i--){
+                aYears.push({sYear})
+                sYear--
+            }
+            var oModel = new JSONModel({
+                selectedYear: new Date().getFullYear(),
+                years: aYears
+            });
+			this.getView().setModel(oModel, "yearsModel");
+        },
+        onYearChange: function(oEvent){
+            this._addTableInfo(oEvent.getSource().getSelectedKey());
         },
         onAfterRendering: function() {
-            this._addTableInfo()
+            this._addTableInfo(new Date().getFullYear())
         },
-        _addTableInfo: function(){
+        _addTableInfo: function(sYear){
+            this.getView().byId("idSelectYear").setSelectedKey(sYear)
             let oTable = this.getView().byId("idCalendarTable")
             let aMonths = this.getView().getModel("months").getData().months;
             let aColumns = [
@@ -31,7 +51,7 @@ sap.ui.define([
                         }
                         aColumns.push(col)
                     }
-                    let date = new Date(new Date().getFullYear(), i, j)
+                    let date = new Date(sYear, i, j)
                     let day = date.getDay()
                     let type, state;
                     switch(day){
