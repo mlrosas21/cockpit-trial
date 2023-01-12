@@ -80,7 +80,7 @@ sap.ui.define([
                         state: state
                     }
                 }
-                aMonthsInfo.push(row)
+                aMonthsInfo.push(row);
             }
 
             var oModel = new sap.ui.model.json.JSONModel();
