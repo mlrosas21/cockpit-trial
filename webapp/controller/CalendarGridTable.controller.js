@@ -52,8 +52,12 @@ sap.ui.define([
                         aColumns.push(col)
                     }
                     let date = new Date(sYear, i, j)
+                    let diasMes = new Date(sYear, i+1, 0).getDate()
                     let day = date.getDay()
-                    let type, state;
+                    let type = '', 
+                        state = 'None';
+                    
+                    // Identificar fines de semana
                     switch(day){
                         case 0:
                             type="D"
@@ -63,10 +67,14 @@ sap.ui.define([
                             type="S"
                             state="Information"
                             break;
-                        default:
-                            type = '';
-                            state='None'
                     }
+
+                    // Identificar meses con menos de 31 dias
+                    if(j > diasMes){
+                        type="X"
+                        state = 'None'
+                    }
+                    
                     row[j] = {
                         value: type,
                         state: state
